@@ -1,3 +1,22 @@
-/venv
-.idea
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PEP 582
+__pypackages__/
+
+# Environments
+.e/
+.env*
+!.env.example
+env/
+venv/
+
+# IDE settings
+.idea/
+.spyderproject
+.spyproject
+
+# Meta data
 fsa.egg-info

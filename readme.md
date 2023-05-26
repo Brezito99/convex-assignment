@@ -33,3 +33,21 @@ Python version of the Infinity Works technical test. It uses the `flask`_ microf
 
 * Please do not fork this repository.
 * Please do not commit your code to GitHub.
+
+
+## Resources
+
+* API Guideline
+https://api.ratings.food.gov.uk/help
+* Endpoints Documentation
+https://api.ratings.food.gov.uk/Help/Index/
+
+## Future plans
+
+- tests
+- stored data (in case of internet issues, updated regularly)
+- regularly update stored data and use them except of rest calls
+- remove .env file from repository
+- dockerization
+- CI/CX pipeline setup
+- logging (except of print)

@@ -17,7 +17,7 @@
 
     <main role="main" class="inner cover">
         <h1 class="cover-heading">Food Agency Data Summarizer.</h1>
-        <p class="lead">This summarizer will take take all the data from a specific authority, and show you how the food
+        <p class="lead">This summarizer will take all the data from a specific authority, and show you how the food
             hygiene ratings are distributed.</p>
         <p><label> Select an Authority:
             <select class="js-authority-select">
@@ -51,7 +51,11 @@
     $(function () {
 
         $('.js-authority-select').on('change', function () {
-            loadAuthority(this.value);
+            loadAuthority(0, "empty");
+
+            var json = JSON.parse(this.value)
+
+            loadAuthority(json.id, json.region)
         });
 
         $.get('/api', {}, function (resp) {
@@ -59,9 +63,10 @@
             selectElem.html('');
             $.each(resp, function (key, authority) {
                 if(key === 0){
-                    loadAuthority(authority.id);
+                    loadAuthority(authority.id, authority.region);
                 }
-                selectElem.append('<option value="' + authority.id + '">' + authority.name + '</option>');
+                selectElem.append('<option value=\'{"id": ' + authority.id + ', "region": "' +
+                    authority.region + '"}\'>' + authority.name + '</option>');
             });
 
         });
@@ -69,12 +74,16 @@
 
     });
 
-    function loadAuthority(id) {
-        $.get('/api/' + id, {}, function (resp) {
+    function loadAuthority(id, region) {
+       var encodedUri = encodeURIComponent('api/?id=' + id + '&region=' + region)
+
+
+
+        $.get(encodedUri, {}, function (resp) {
             var tableElem = $('.js-authority-table');
             tableElem.html('');
             $.each(resp, function (key, rating) {
-                tableElem.append('<tr><td>' + rating.name + '</td><td>' + rating.value.toFixed(1) + '%</td></tr>');
+                tableElem.append('<tr><td>' + rating.name + '</td><td>' + rating.value.toFixed(2) + '%</td></tr>');
             });
         });
     }

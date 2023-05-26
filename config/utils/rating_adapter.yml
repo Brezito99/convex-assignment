@@ -1,0 +1,37 @@
+rating_mapping:
+  scotland: scotland_rating
+  default: default_rating
+
+default_rating:
+  include_not_processed: false
+  processed_ratings:
+    - input: '5'
+      output: '5-star'
+    - input: '4'
+      output: '4-star'
+    - input: '3'
+      output: '3-star'
+    - input: '2'
+      output: '2-star'
+    - input: '1'
+      output: '1-star'
+    - input: '0'
+      output: '0-star'
+    - input: 'Exempt'
+      output: 'Exempt'
+    - input: 'AwaitingInspection'
+      output: 'Awaiting Inspection'
+    - input: 'AwaitingPublication'
+      output: 'Awaiting Publication'
+
+scotland_rating:
+  include_not_processed: false
+  processed_ratings:
+    - input: 'Pass and Eat Safe'
+      output: 'Pass and Eat Safe'
+    - input: 'Pass'
+      output: 'Pass'
+    - input: 'Improvement Required'
+      output: 'Improvement Required'
+    - input: 'Awaiting Inspection'
+      output: 'Awaiting Inspection'
